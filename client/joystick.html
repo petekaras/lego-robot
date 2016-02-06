@@ -42,7 +42,7 @@
 		        subscribe_key: 'sub-c-bb03bdaa-a812-11e5-9dba-0619f8945a4f'
 	    	});
 			var currentDirection = 'stop'
-			
+
 			function sendMessage(direction){
 				if(currentDirection !== direction){
 					currentDirection = direction;
@@ -84,10 +84,10 @@
 					sendMessage('left');		
 				}
 				else if(joystick.up()){
-					sendMessage('up');		
+					sendMessage('forwards');		
 				}
 				else if(joystick.down()){
-					sendMessage('down');		
+					sendMessage('backwards');		
 				}else{
 					sendMessage('stop');
 				}
