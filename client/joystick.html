@@ -34,14 +34,34 @@
 			-moz-user-select	: none;
 		}
 		</style>
+		<script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
+		<script>
+
+			var PUBNUB_demo = PUBNUB.init({
+		        publish_key: 'pub-c-a20fde3e-257d-4c7b-ac2b-6e734e0270d3',
+		        subscribe_key: 'sub-c-bb03bdaa-a812-11e5-9dba-0619f8945a4f'
+	    	});
+			var currentDirection = 'stop'
+			function sendMessage(direction){
+				if(currentDirection !== direction){
+					currentDirection = direction;
+					PUBNUB_demo.publish({
+					    channel: 'lego-home',
+					    message: {"move":direction}
+						});
+				}
+    		}
+		</script>
+
 	</head>
 	<body>
 		<div id="container"></div>
-		<div id="info">
-			<span id="result"></span>
-		</div> 
-		<script src="js/joystick.js"></script>
+			<script src="js/joystick.js"></script>
+
+
 		<script>
+
+
 			console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
 	
 			var joystick	= new VirtualJoystick({
@@ -54,7 +74,22 @@
 			joystick.addEventListener('touchEnd', function(){
 				console.log('up')
 			})
-			setInterval(function(){				
+
+			setInterval(function(){	
+				if(joystick.right()){
+					sendMessage('right');		
+				}
+				else if(joystick.left()){
+					sendMessage('left');		
+				}
+				else if(joystick.up()){
+					sendMessage('up');		
+				}
+				else if(joystick.down()){
+					sendMessage('down');		
+				}else{
+					sendMessage('stop');
+				}
 				var outputEl	= document.getElementById('result');
 				outputEl.innerHTML	= '<b>Result:</b> '
 					+ ' dx:'+joystick.deltaX()
@@ -64,6 +99,13 @@
 					+ (joystick.left()	? ' left'	: '')
 					+ (joystick.down()	? ' down' 	: '')	
 			}, 1/30 * 1000);
-		</script>
+		</script>	
+
+
+
+		<div id="info">
+			<span id="result"></span>
+		</div> 
+
 	</body>
 </html>
