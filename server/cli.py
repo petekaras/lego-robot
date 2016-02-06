@@ -11,25 +11,25 @@ GPIO.setup(18,GPIO.OUT)
 GPIO.setup(22,GPIO.OUT)
 GPIO.setup(23,GPIO.OUT)
 
-def forwards():
+def left():
         GPIO.output(17,1)
         GPIO.output(18,0)
         GPIO.output(22,1)
         GPIO.output(23,0)
 
-def backwards():
+def right():
         GPIO.output(17,0)
         GPIO.output(18,1)
         GPIO.output(22,0)
         GPIO.output(23,1)
 
-def left():
+def forwards():
         GPIO.output(17,0)
         GPIO.output(18,1)
         GPIO.output(22,1)
         GPIO.output(23,0)
 
-def right():
+def backwards():
         GPIO.output(17,1)
         GPIO.output(18,0)
         GPIO.output(22,0)
