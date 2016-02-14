@@ -55,11 +55,11 @@ def callback(message, channel):
         right()
     elif message['move'] == 'nudge-left':
         left()
-        time.sleep(1)
+        time.sleep(0.2)
         stop()
     elif message['move'] == 'nudge-right':
         right()
-        time.sleep(1)
+        time.sleep(0.2)
         stop()
     elif message['move'] == 'stop':
         stop()        
