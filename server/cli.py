@@ -1,6 +1,7 @@
 #lego-robot
 from sys import exit
 import RPi.GPIO as GPIO
+import time
 from pubnub import Pubnub
 
 GPIO.setmode(GPIO.BCM)
@@ -52,6 +53,14 @@ def callback(message, channel):
         left()
     elif message['move'] == 'right':
         right()
+    elif message['move'] == 'nudge-left':
+        left()
+        time.sleep(1)
+        stop()
+    elif message['move'] == 'nudge-right':
+        right()
+        time.sleep(1)
+        stop()
     elif message['move'] == 'stop':
         stop()        
     else:
