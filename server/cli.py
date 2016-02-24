@@ -41,7 +41,11 @@ def stop():
         GPIO.output(18,0)
         GPIO.output(22,0)
         GPIO.output(23,0)
+def lightOn():
+	GPIO.output(21, True)
 
+def lightOff():
+	GPIO.output(21, False)
 pubnub = Pubnub(publish_key="pub-c-a20fde3e-257d-4c7b-ac2b-6e734e0270d3", subscribe_key="sub-c-bb03bdaa-a812-11e5-9dba-0619f8945a4f")
 def callback(message, channel):
     print(message['move'])
@@ -55,14 +59,18 @@ def callback(message, channel):
         right()
     elif message['move'] == 'nudge-left':
         left()
-        time.sleep(0.2)
+        time.sleep(0.1)
         stop()
     elif message['move'] == 'nudge-right':
         right()
-        time.sleep(0.2)
+        time.sleep(0.1)
         stop()
     elif message['move'] == 'stop':
-        stop()        
+        stop()       
+    elif message['move'] == 'lightOn':
+	lightOn()
+    elif message['move'] == 'lightOff':
+	lightOff() 
     else:
         stop()
   
