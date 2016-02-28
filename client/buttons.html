@@ -4,7 +4,8 @@
 		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 		<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
-		
+		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>		
 		<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" integrity="sha384-XXXXXXXX" crossorigin="anonymous">
 		<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js" integrity="sha384-XXXXXXXX" crossorigin="anonymous"></script>
 
@@ -32,8 +33,17 @@
 			}
 
 		</script>
-
-
+		<script> 
+ 			$(function() {
+    			$('#toggle-event').change(function() {
+    				if($('#toggle-event').prop('checked')){
+    					sendMessage('lightOff');
+    				}else{
+    					sendMessage('lightOn');
+    				}	
+				})
+  		})
+</script>
 		<style>
 		body {
 			text-align: center;
@@ -50,8 +60,7 @@
 </br><br/>
 <button type="button" class="btn btn-primary-outline" onClick="sendMessage('backwards')">Backwards</button>
 <br/><br/>
-<button type="button" class="btn btn-primary-outline" onClick="sendMessage('lightOff')">Light on</button>
-<button type="button" class="btn btn-primary-outline" onClick="sendMessage('lightOn')">Light off</button>
-
+Lights:
+<input checked id="toggle-event" data-toggle="toggle" type="checkbox">
 </body>
 </html>
