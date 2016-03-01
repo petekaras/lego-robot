@@ -57,5 +57,5 @@ add the following lines to `\etc\rc.local`
 sudo motion
 
 #Robot listens to commands
-nohup sudo python /home/pi/lego-robot/server/cli.py &
+nohup sudo python /home/pi/lego-robot/server/robot.py &
 ```

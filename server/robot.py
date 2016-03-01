@@ -1,4 +1,6 @@
 #lego-robot
+#This code was adapted from RyanTeks example scripts 
+#https://github.com/ryanteck
 from sys import exit
 import RPi.GPIO as GPIO
 import time
