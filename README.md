@@ -59,6 +59,3 @@ sudo motion
 #Robot listens to commands
 nohup sudo python /home/pi/lego-robot/server/cli.py &
 ```
-## Running
-* sudo python cli.py
-* UI available from where you installed client.html
