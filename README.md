@@ -12,7 +12,7 @@
 
 ## Software
 * PubNub realtime infrastructure-as-a-service
-* Raspbian wheezy
+* Raspbian Jessie
 * Apache 
 * Python
 * Javascript virtual joystick
