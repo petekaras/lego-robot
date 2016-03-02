@@ -1,4 +1,6 @@
 # lego-robot
+This is the software required to build a lego robot with a webcam that streams over HTTP.
+Full instructions are here [on the instructables website](http://www.instructables.com/id/Dog-Bot-Lego-Robot-Rover-With-Webcam/)
 
 ## Hardware
 
