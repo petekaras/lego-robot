@@ -2,7 +2,7 @@
 
 ## Hardware
 
-* Raspberry Pi model ??
+* Raspberry Pi model B+ (although earlier versions should work)
 * Ryanteck RTK-000-001 Motor Controller Board 
 * Motor Robot Car chassis kit with Speed encoder (bought from Amazon)
 * Recharge battery pack for power source
@@ -25,8 +25,7 @@
 * sudo apt-get install motion
 * sudo apt-get install python-dev python-pip
 * sudo pip install pubnub
-* sudo apt-get install apache2 -y
-* git clone https://github.com/petekaras/lego-robot.git into apache web folder
+* git clone https://github.com/petekaras/lego-robot.git into your home directory
 
 ## Configure motion
 ### /etc/motion/motion.conf
