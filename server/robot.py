@@ -1,9 +1,14 @@
-#lego-robot
-#This code was adapted from RyanTeks example scripts 
-#https://github.com/ryanteck
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+lego-robot
+This code was adapted from RyanTeks example scripts 
+https://github.com/ryanteck
+"""
 from sys import exit
 import RPi.GPIO as GPIO
 import time
+import keys
 from pubnub import Pubnub
 
 GPIO.setmode(GPIO.BCM)
@@ -52,7 +57,8 @@ def lightOff():
 	GPIO.output(21, False)
         GPIO.output(20, False)
 
-pubnub = Pubnub(publish_key="pub-c-a20fde3e-257d-4c7b-ac2b-6e734e0270d3", subscribe_key="sub-c-bb03bdaa-a812-11e5-9dba-0619f8945a4f")
+pubnub = Pubnub(publish_key=keys.PUBLISH, subscribe_key=keys.SUBSCRIBE)
+
 def callback(message, channel):
     print(message['move'])
     if message['move'] == 'forwards':
