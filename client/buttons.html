@@ -1,39 +1,33 @@
-<html>
-	<head>
-		<meta charset="utf-8">
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>dog-bot button controller</title>
+	<meta charset="utf-8">
 		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-		<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-		<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
 		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
-		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>		
-		<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" integrity="sha384-XXXXXXXX" crossorigin="anonymous">
-		<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js" integrity="sha384-XXXXXXXX" crossorigin="anonymous"></script>
+	
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 		<script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
+		<script src="./keys.js"></script>
 		<script>
-
-			var PUBNUB_demo = PUBNUB.init({
-		        publish_key: 'pub-c-a20fde3e-257d-4c7b-ac2b-6e734e0270d3',
-		        subscribe_key: 'sub-c-bb03bdaa-a812-11e5-9dba-0619f8945a4f'
-	    	});
-			var currentDirection = 'stop'
-
+			
 			function sendMessage(direction){
-				if(currentDirection !== direction){
 					currentDirection = direction;
 					PUBNUB_demo.publish({
 					    channel: 'lego-home',
 					    message: {"move":direction}
 						});
-				}
+
     		}
 			
-			function sayHello(e){
-				alert("hello" + e);
-			}
-
-		</script>
-		<script> 
  			$(function() {
     			$('#toggle-event').change(function() {
     				if($('#toggle-event').prop('checked')){
@@ -42,25 +36,43 @@
     					sendMessage('lightOn');
     				}	
 				})
+
   		})
-</script>
+		</script>
 		<style>
 		body {
-			text-align: center;
+			text-align: center;			
 		}
-		</style>		
+		</style>			
+  </head>
+  <body>
+    <h1>dog-bot controller</h1>
+	<button type="button" class="btn btn-default" onClick="sendMessage('forwards')">
+		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+		Forwards
+	</button>
+	<br/><br/>
 
-	</head>
-	<body>
-<button type="button" class="btn btn-primary-outline" onClick="sendMessage('forwards')">Forwards</button>
-<br/><br/>
-<button type="button" class="btn btn-primary-outline" onClick="sendMessage('nudge-left')">Left</button>
-<button type="button" class="btn btn-primary-outline" onClick="sendMessage('stop')">STOP</button>
-<button type="button" class="btn btn-primary-outline" onClick="sendMessage('nudge-right')">Right</button>
-</br><br/>
-<button type="button" class="btn btn-primary-outline" onClick="sendMessage('backwards')">Backwards</button>
-<br/><br/>
-Lights:
-<input checked id="toggle-event" data-toggle="toggle" type="checkbox">
-</body>
+	<button type="button" class="btn btn-default" onClick="sendMessage('nudge-left')">
+	<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>Left</button>
+	<button type="button" class="btn btn-default" onClick="sendMessage('stop')">STOP</button>
+	<button type="button" class="btn btn-default" onClick="sendMessage('nudge-right')">
+	Right<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button>
+	</br><br/>
+	<button type="button" class="btn btn-default" onClick="sendMessage('backwards')">
+	<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>Backwards</button>
+	<br/><br/>
+	Lights:
+	<input checked id="toggle-event" class="btn btn-primary" data-toggle="toggle" type="checkbox">    
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+		<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>		
+		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>	
+  </body>
 </html>
+
+
+
+
