@@ -34,3 +34,14 @@
 ## Running
 * sudo python cli.py
 * UI available from where you installed client.html
+
+## Creating a disk image
+Find the name of the device of the plugged in SD-card, by typing:
+
+`ls -la /dev/sd*`
+
+plug and unplug the USB reader to find out which device to use. Now write the image:
+
+`sudo dd if=2016-02-26-raspbian-jessie.img of=/dev/sdb`
+
+Might take a while over USB 2.
