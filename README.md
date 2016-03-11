@@ -74,3 +74,22 @@ plug and unplug the USB reader to find out which device to use. Now write the im
 `sudo dd if=2016-02-26-raspbian-jessie.img of=/dev/sdb`
 
 Might take a while over USB 2.
+
+##Connect with TTL serial cable
+I used this to connect up to a newly installed Raspian OS, and set up the wifi. Saves having to connect up keyboard, mouse and screen.
+The wires of the cable should be connected like this:
+
+| Wire color | GPIO		|
+| -----------| -------- |
+| red 		 | 5V		| 
+| black  	 | GND  	|
+| white  	 | 14  		|
+| green  	 | 15  		|
+
+Install screen
+
+`sudo apt-get install screen`
+
+Run screen
+
+`sudo screen /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0 115200`
