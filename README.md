@@ -56,11 +56,6 @@ add the following lines to `\etc\rc.local`
 #Robot starts webcam
 sudo motion
 
-## Running
-* sudo python cli.py
-* UI available from where you installed client.html
-
-
 #Robot listens to commands
 nohup sudo python /home/pi/lego-robot/server/robot.py &
 ```
