@@ -93,3 +93,16 @@ Install screen
 Run screen
 
 `sudo screen /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0 115200`
+
+##Setup wifi on the commandline
+Update the config file `/etc/wpa_supplicant/wpa_supplicant.conf` with your wifi details:
+
+```
+network={
+    ssid="Network_name"
+    psk="Your_wifi_password"
+}
+
+```
+
+See also [Raspberry Pis instructions for doing this](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) 
