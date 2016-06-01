@@ -3,11 +3,11 @@ This is the software required to build a lego robot with a webcam that streams o
 Full instructions are here [on the instructables website](http://www.instructables.com/id/Dog-Bot-Lego-Robot-Rover-With-Webcam/)
 
 ## Available Controllers
-| Controller 			| Description 		                        |
-| --------------- | --------------------------------------- |
-| Button  				| click the buttons to control dogbot  	  |
-| Joystick        | touch joystick, nice to use on a tablet |
-| voice  		      | voice control  			                    |
+| Controller 			| Description 		                                    |
+| --------------- | --------------------------------------------------- |
+| Button  				| click the buttons to control dogbot  	              |
+| Joystick        | touch joystick, nice to use on a tablet             |
+| voice  		      | voice control, speak commands and watch dogbot move |
 
 
 
