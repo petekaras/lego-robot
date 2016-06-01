@@ -2,10 +2,19 @@
 This is the software required to build a lego robot with a webcam that streams over HTTP.
 Full instructions are here [on the instructables website](http://www.instructables.com/id/Dog-Bot-Lego-Robot-Rover-With-Webcam/)
 
+## Available Controllers
+| Controller 			| Description 		                        |
+| --------------- | --------------------------------------- |
+| Button  				| click the buttons to control dogbot  	  |
+| Joystick        | touch joystick, nice to use on a tablet |
+| voice  		      | voice control  			                    |
+
+
+
 ## Hardware
 
 * Raspberry Pi model B+ (although earlier versions should work)
-* Ryanteck RTK-000-001 Motor Controller Board 
+* Ryanteck RTK-000-001 Motor Controller Board
 * Motor Robot Car chassis kit with Speed encoder (bought from Amazon)
 * Recharge battery pack for power source
 * 4 AA batteries for motor power
@@ -32,21 +41,21 @@ Full instructions are here [on the instructables website](http://www.instructabl
 ### /etc/motion/motion.conf
 
 
-| Property  			| value 		|
-| --------------------- | ------------- |
-| daemon  				| on  			|
-| ffmpeg_output_movies  | off  			|
-| output_pictures  		| off  			|
-| stream_maxrate		| 30			|
-| width					| 480			|
-| height				| 360			|
+| Property  			        | value   |
+| ----------------------- | ------- |
+| daemon  				        | on  		|
+| ffmpeg_output_movies    | off  		|
+| output_pictures  		    | off  	  |
+| stream_maxrate		      | 30			|
+| width					          | 480			|
+| height				          | 360			|
 
 You can vary the `stream_maxrate` to increase the quality of the video. Also play around with the width and height settings.
 
 ### /etc/default/motion
 
-| Property  			| value 		|
-| --------------------- | ------------- |
+| Property  			      | value 		|
+| --------------------- | --------- |
 | start_motion_daemon  	| yes  			|
 
 ## auto run services on start up
@@ -75,11 +84,11 @@ I used this to connect up to a newly installed Raspian OS, and set up the wifi. 
 The wires of the cable should be connected like this:
 
 | Wire color | GPIO		|
-| -----------| -------- |
-| red 		 | 5V		| 
-| black  	 | GND  	|
-| white  	 | 14  		|
-| green  	 | 15  		|
+| -----------| ------ |
+| red 		   | 5V		  |
+| black  	   | GND  	|
+| white  	   | 14  		|
+| green  	   | 15  		|
 
 Install screen
 
@@ -100,4 +109,4 @@ network={
 
 ```
 
-See also [Raspberry Pis instructions for doing this](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) 
+See also [Raspberry Pis instructions for doing this](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)
