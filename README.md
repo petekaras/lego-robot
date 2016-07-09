@@ -96,7 +96,9 @@ Install screen
 
 Run screen
 
-`sudo screen /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0 115200`
+`bash screen`
+
+You should then be prompted to logon to the pi
 
 ##Setup wifi on the commandline
 Update the config file `/etc/wpa_supplicant/wpa_supplicant.conf` with your wifi details:
