@@ -94,11 +94,14 @@ Install screen
 
 `sudo apt-get install screen`
 
-Run screen
+Run screen:
 
 `bash screen`
 
 You should then be prompted to logon to the pi
+If that doesnt work try:
+
+`sudo screen /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0 115200`
 
 ##Setup wifi on the commandline
 Update the config file `/etc/wpa_supplicant/wpa_supplicant.conf` with your wifi details:
