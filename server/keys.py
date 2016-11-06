@@ -6,3 +6,4 @@ PubNub keys
 
 PUBLISH="pub-xxxxxxxxxxxxxxx"
 SUBSCRIBE="sub-xxxxxxxxxxxxx"
+CHANNEL="xxxxx"

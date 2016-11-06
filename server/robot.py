@@ -2,7 +2,7 @@
 # encoding: utf-8
 """
 lego-robot
-This code was adapted from RyanTeks example scripts 
+This code was adapted from RyanTeks example scripts
 https://github.com/ryanteck
 """
 from sys import exit
@@ -78,33 +78,33 @@ def callback(message, channel):
         time.sleep(0.1)
         stop()
     elif message['move'] == 'stop':
-        stop()       
+        stop()
     elif message['move'] == 'lightOn':
 	lightOn()
     elif message['move'] == 'lightOff':
-	lightOff() 
+	lightOff()
     else:
         stop()
-  
+
 def error(message):
     print("ERROR : " + str(message))
-  
-  
+
+
 def connect(message):
     print("CONNECTED")
     print pubnub.publish(channel='my_channel', message='Hello from the PubNub Python SDK')
-  
-  
-  
+
+
+
 def reconnect(message):
     print("RECONNECTED")
-  
-  
+
+
 def disconnect(message):
     print("DISCONNECTED")
-  
-  
-pubnub.subscribe(channels='lego-home', callback=callback, error=callback,
+
+
+pubnub.subscribe(channels=keys.CHANNEL, callback=callback, error=callback,
                  connect=connect, reconnect=reconnect, disconnect=disconnect)
 
 try:
