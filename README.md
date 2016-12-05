@@ -34,7 +34,7 @@ Full instructions are here [on the instructables website](http://www.instructabl
 * sudo apt-get update
 * sudo apt-get install motion
 * sudo apt-get install python-dev python-pip
-* sudo pip install pubnub
+* sudo pip install 'pubnub>=3,<4'
 * git clone https://github.com/petekaras/lego-robot.git into your home directory
 
 ## Configure motion
