@@ -43,30 +43,81 @@ Thanks !
 		<script src="./messenger.js"></script>
 		<script>
 			var currentDirection = 'stop'
-
-			function changeDirection(direction){
+			var channel = document.location.search.split("=")[1];
+			alert(channel);
+			function sendMessage(direction){
 				if(currentDirection !== direction){
 					currentDirection = direction;
-					sendMessage(direction);
+					console.log("sending: ", direction);
+					//todo:figure out why this wont work ??
+					//sendMessage(direction,channel);
+					if(channel==='green'){
+						green.publish({
+								channel: 'dog-bot',
+								message: {"move":direction}
+							});
+					}
+
+					if(channel==='blue'){
+						blue.publish({
+								channel: 'other-bot',
+								message: {"move":direction}
+							});
+					}
+
 				}
     		}
 		</script>
 
 	</head>
-
 	<body>
-
-		<div id="container">
-			Channel:
-			<select id="channel">
-				<option value="blue">blue</option>
-				<option value="green">green</option>
-			</select>
-		</div>
+		<div id="container"></div>
 			<script src="js/joystick.js"></script>
 
 
-	
+		<script>
+
+
+			console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
+
+			var joystick	= new VirtualJoystick({
+				container	: document.getElementById('container'),
+				mouseSupport	: true,
+			});
+			joystick.addEventListener('touchStart', function(){
+				console.log('down')
+			})
+			joystick.addEventListener('touchEnd', function(){
+				console.log('up')
+			})
+
+			setInterval(function(){
+				if(joystick.right()){
+					sendMessage('right');
+				}
+				else if(joystick.left()){
+					sendMessage('left');
+				}
+				else if(joystick.up()){
+					sendMessage('forwards');
+				}
+				else if(joystick.down()){
+					sendMessage('backwards');
+				}else{
+					sendMessage('stop');
+				}
+				var outputEl	= document.getElementById('result');
+				outputEl.innerHTML	= '<b>Result:</b> '
+					+ ' dx:'+joystick.deltaX()
+					+ ' dy:'+joystick.deltaY()
+					+ (joystick.right()	? ' right'	: '')
+					+ (joystick.up()	? ' up'		: '')
+					+ (joystick.left()	? ' left'	: '')
+					+ (joystick.down()	? ' down' 	: '')
+			}, 1/30 * 1000);
+		</script>
+
+
 
 		<div id="info">
 			<span id="result"></span>

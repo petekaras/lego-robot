@@ -21,7 +21,10 @@
 		<script>
 
 
-
+     function doAction(msg){
+       var doc = document.getElementById("channel");
+       sendMessage(msg,doc.options[doc.selectedIndex].value);
+      }
 
  			$(function() {
     			$('#toggle-event').change(function() {
@@ -42,19 +45,19 @@
   </head>
   <body>
     <h1>dog-bot controller</h1>
-	<button type="button" class="btn btn-default" onClick="sendMessage('forwards')">
+	<button type="button" class="btn btn-default" onClick="doAction('forwards')">
 		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 		Forwards
 	</button>
 	<br/><br/>
 
-	<button type="button" class="btn btn-default" onClick="sendMessage('nudge-left')">
+	<button type="button" class="btn btn-default" onClick="doAction('nudge-left')">
 	<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>Left</button>
-	<button type="button" class="btn btn-default" onClick="sendMessage('stop')">STOP</button>
-	<button type="button" class="btn btn-default" onClick="sendMessage('nudge-right')">
+	<button type="button" class="btn btn-default" onClick="doAction('stop')">STOP</button>
+	<button type="button" class="btn btn-default" onClick="doAction('nudge-right')">
 	Right<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button>
 	</br><br/>
-	<button type="button" class="btn btn-default" onClick="sendMessage('backwards')">
+	<button type="button" class="btn btn-default" onClick="doAction('backwards')">
 	<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>Backwards</button>
 	<br/><br/>
 	Lights:
