@@ -22,7 +22,7 @@ GPIO.setup(23,GPIO.OUT)
 GPIO.setup(21,GPIO.OUT)
 GPIO.setup(20,GPIO.OUT)
 
-stepMotor = Motor([10,9,11,25], 15)
+stepMotor = stepper.Motor([10,9,11,25], 15)
 
 def right():
         GPIO.output(17,1)
