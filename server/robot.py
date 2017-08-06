@@ -9,6 +9,7 @@ from sys import exit
 import RPi.GPIO as GPIO
 import time
 import keys
+import stepper
 from pubnub import Pubnub
 
 GPIO.setmode(GPIO.BCM)
@@ -20,6 +21,8 @@ GPIO.setup(22,GPIO.OUT)
 GPIO.setup(23,GPIO.OUT)
 GPIO.setup(21,GPIO.OUT)
 GPIO.setup(20,GPIO.OUT)
+
+stepMotor = Motor([10,9,11,25], 15)
 
 def right():
         GPIO.output(17,1)
@@ -50,6 +53,13 @@ def stop():
         GPIO.output(18,0)
         GPIO.output(22,0)
         GPIO.output(23,0)
+
+def stepCW():
+    stepMotor.move_cw(10)
+
+def stepACW():
+    stepMotor.move_acw(10)
+
 def lightOn():
 	GPIO.output(21, True)
         GPIO.output(20, True)
@@ -80,9 +90,13 @@ def callback(message, channel):
     elif message['move'] == 'stop':
         stop()
     elif message['move'] == 'lightOn':
-	lightOn()
+	    lightOn()
     elif message['move'] == 'lightOff':
-	lightOff()
+	    lightOff()
+    elif message['move'] == 'stepCW':
+        stepCW()
+    elif message['move'] == 'stepACW':
+        stepACW()
     else:
         stop()
 
