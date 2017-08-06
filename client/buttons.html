@@ -28,10 +28,11 @@
 
  			$(function() {
     			$('#toggle-event').change(function() {
+            var doc = document.getElementById("channel");
     				if($('#toggle-event').prop('checked')){
-    					sendMessage('lightOff');
+    					sendMessage('lightOff',doc.options[doc.selectedIndex].value);
     				}else{
-    					sendMessage('lightOn');
+    					sendMessage('lightOn',doc.options[doc.selectedIndex].value);
     				}
 				})
 
@@ -63,6 +64,12 @@
 	Lights:
 	<input checked id="toggle-event" class="btn btn-primary" data-toggle="toggle" type="checkbox">
   <br/><br/>
+  <button type="button" class="btn btn-default" onClick="doAction('stepCW')">
+	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Clockwise</button>
+
+  <button type="button" class="btn btn-default" onClick="doAction('stepACW')">
+  <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Anti Clockwise</button>
+  <br></br>
   Channel:
   <select class="btn btn-default" id="channel">
     <option value="blue">blue</option>
