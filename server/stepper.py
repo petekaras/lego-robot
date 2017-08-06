@@ -54,6 +54,12 @@ class Motor:
         self._move_cw(steps)
         self.step_angle = self.step_angle - angle
 
+    def _stop(self, big_steps):
+        GPIO.output(self.P1, 0)
+        GPIO.output(self.P2, 0)
+        GPIO.output(self.P3, 0)
+        GPIO.output(self.P4, 0)
+
     def _move_cw(self, big_steps):
         GPIO.output(self.P1, 0)
         GPIO.output(self.P2, 0)

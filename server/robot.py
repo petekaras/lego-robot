@@ -55,10 +55,13 @@ def stop():
         GPIO.output(23,0)
 
 def stepCW():
-    stepMotor.move_cw(10)
+    stepMotor.move_cw(10000)
 
 def stepACW():
-    stepMotor.move_acw(10)
+    stepMotor.move_acw(10000)
+
+def stepStop():
+    stepMotor.move_acw(10000)
 
 def lightOn():
 	GPIO.output(21, True)
@@ -97,6 +100,8 @@ def callback(message, channel):
         stepCW()
     elif message['move'] == 'stepACW':
         stepACW()
+    elif message['move'] == 'stepStop'
+        stepStop()    
     else:
         stop()
 

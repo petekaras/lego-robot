@@ -37,6 +37,18 @@
 				})
 
   		})
+
+      $(function() {
+        $('.updown').mouseup(function() {
+          doAction('stepStop')
+          console.log("up");
+        }).mousedown(function() {
+          doAction('stepCW')
+          console.log("down");
+        })
+
+  		})
+
 		</script>
 		<style>
 		body {
@@ -69,6 +81,8 @@
 
   <button type="button" class="btn btn-default" onClick="doAction('stepACW')">
   <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Anti Clockwise</button>
+
+    <input type="button" class="btn btn-default updown" value="test"></input>
   <br></br>
   Channel:
   <select class="btn btn-default" id="channel">
