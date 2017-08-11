@@ -38,16 +38,29 @@
 
   		})
 
+      /**
+      * Move stepper motor by sending lots of signals on mouse down
+      * then stop on mouse up.
+      */
+      var mousedownID = -1;
       $(function() {
-        $('.updown').mouseup(function() {
-          doAction('stepStop')
+        $('.updown').bind('mouseup touchend',(function(event) {
+          if(mousedownID!=-1){
+            clearInterval(mousedownID);
+            mousedownID=-1;
+          }
           console.log("up");
-        }).mousedown(function() {
-          doAction('stepCW')
+        })).bind('mousedown touchstart',(function(event) {
+          if(mousedownID==-1)
+           mousedownID = setInterval(sendMoveSignal(event.target.id), 1000);
           console.log("down");
-        })
+        }))
 
   		})
+
+      function sendMoveSignal(direction){
+          doAction(direction)
+      }
 
 		</script>
 		<style>
@@ -76,13 +89,9 @@
 	Lights:
 	<input checked id="toggle-event" class="btn btn-primary" data-toggle="toggle" type="checkbox">
   <br/><br/>
-  <button type="button" class="btn btn-default" onClick="doAction('stepCW')">
-	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Clockwise</button>
 
-  <button type="button" class="btn btn-default" onClick="doAction('stepACW')">
-  <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Anti Clockwise</button>
-
-    <input type="button" class="btn btn-default updown" value="test"></input>
+  <input id="stepACW" type="button" class="btn btn-default updown" value="CW"></input>
+  <input id="stepCW" type="button" class="btn btn-default updown" value="ACW"></input>
   <br></br>
   Channel:
   <select class="btn btn-default" id="channel">
