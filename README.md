@@ -79,7 +79,7 @@ plug and unplug the USB reader to find out which device to use. Now write the im
 
 Might take a while over USB 2.
 
-##Connect with TTL serial cable
+## Connect with TTL serial cable
 I used this to connect up to a newly installed Raspian OS, and set up the wifi. Saves having to connect up keyboard, mouse and screen.
 The wires of the cable should be connected like this:
 
