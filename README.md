@@ -87,8 +87,8 @@ The wires of the cable should be connected like this:
 | -----------| ------ |
 | red 		   | 5V		  |
 | black  	   | GND  	|
-| white  	   | 14  		|
-| green  	   | 15  		|
+| white  	   | GIO14  		|
+| green  	   | GPIO15  		|
 
 Install screen
 
