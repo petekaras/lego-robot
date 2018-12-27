@@ -5,125 +5,72 @@ lego-robot
 This code was adapted from RyanTeks example scripts
 https://github.com/ryanteck
 """
-from sys import exit
-import RPi.GPIO as GPIO
-import time
 import keys
-import stepper
-from pubnub import Pubnub
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-
-GPIO.setup(17,GPIO.OUT)
-GPIO.setup(18,GPIO.OUT)
-GPIO.setup(22,GPIO.OUT)
-GPIO.setup(23,GPIO.OUT)
-GPIO.setup(21,GPIO.OUT)
-GPIO.setup(20,GPIO.OUT)
-
-stepMotor = stepper.Motor([10,9,11,25], 15)
-
-def right():
-        GPIO.output(17,1)
-        GPIO.output(18,0)
-        GPIO.output(22,1)
-        GPIO.output(23,0)
-
-def left():
-        GPIO.output(17,0)
-        GPIO.output(18,1)
-        GPIO.output(22,0)
-        GPIO.output(23,1)
-
-def forwards():
-        GPIO.output(17,0)
-        GPIO.output(18,1)
-        GPIO.output(22,1)
-        GPIO.output(23,0)
-
-def backwards():
-        GPIO.output(17,1)
-        GPIO.output(18,0)
-        GPIO.output(22,0)
-        GPIO.output(23,1)
-
-def stop():
-        GPIO.output(17,0)
-        GPIO.output(18,0)
-        GPIO.output(22,0)
-        GPIO.output(23,0)
-
-def stepCW():
-    stepMotor.move_cw(10)
-
-def stepACW():
-    stepMotor.move_acw(10)
-
-def lightOn():
-	GPIO.output(21, True)
-        GPIO.output(20, True)
-def lightOff():
-	GPIO.output(21, False)
-        GPIO.output(20, False)
-
-pubnub = Pubnub(publish_key=keys.PUBLISH, subscribe_key=keys.SUBSCRIBE)
-
-def callback(message, channel):
-    print(message['move'])
-    if message['move'] == 'forwards':
-        forwards()
-    elif message['move'] == 'backwards':
-        backwards()
-    elif message['move'] == 'left':
-        left()
-    elif message['move'] == 'right':
-        right()
-    elif message['move'] == 'nudge-left':
-        left()
-        time.sleep(0.1)
-        stop()
-    elif message['move'] == 'nudge-right':
-        right()
-        time.sleep(0.1)
-        stop()
-    elif message['move'] == 'stop':
-        stop()
-    elif message['move'] == 'lightOn':
-	    lightOn()
-    elif message['move'] == 'lightOff':
-	    lightOff()
-    elif message['move'] == 'stepCW':
-        stepCW()
-    elif message['move'] == 'stepACW':
-        stepACW()
-    else:
-        stop()
-
-def error(message):
-    print("ERROR : " + str(message))
+import time
+#change to otherInterface.py if you want to test with a dummy implmenentation
+from robotGpio import RobotMoves
+from pubnub.pnconfiguration import PNConfiguration
+from pubnub.pubnub import PubNub
+from pubnub.callbacks import SubscribeCallback
+from pubnub.enums import PNStatusCategory
 
 
-def connect(message):
-    print("CONNECTED")
-    print pubnub.publish(channel='my_channel', message='Hello from the PubNub Python SDK')
+##########
+# setup pubnub
+##########
+pnconfig = PNConfiguration()
+pnconfig.subscribe_key = keys.SUBSCRIBE
+pnconfig.publish_key = keys.PUBLISH
+pnconfig.ssl = False
+
+pubnub = PubNub(pnconfig)
+## robotmoves handles the mapping from command to gpio pins
+robotMoves = RobotMoves()
 
 
-
-def reconnect(message):
-    print("RECONNECTED")
-
-
-def disconnect(message):
-    print("DISCONNECTED")
-
-
-pubnub.subscribe(channels=keys.CHANNEL, callback=callback, error=callback,
-                 connect=connect, reconnect=reconnect, disconnect=disconnect)
-
-try:
-    while 1:
+###############
+# Pubnub listener
+# This class handles messages being sent from pubNub to the robot
+###############
+class MyListener(SubscribeCallback):
+    def message(self, pubnub, messageResult):
+        message = messageResult.message
+        if message['move'] == 'forwards':
+            robotMoves.forwards()
+        elif message['move'] == 'backwards':
+            robotMoves.backwards()
+        elif message['move'] == 'left':
+            robotMoves.left()
+        elif message['move'] == 'right':
+            robotMoves.right()
+        elif message['move'] == 'nudge-left':
+            robotMoves.left()
+            time.sleep(0.1)
+            robotMoves.stop()
+        elif message['move'] == 'nudge-right':
+            robotMoves.right()
+            time.sleep(0.1)
+            robotMoves.stop()
+        elif message['move'] == 'stop':
+            robotMoves.stop()
+        elif message['move'] == 'lightOn':
+    	    robotMoves.lightOn()
+        elif message['move'] == 'lightOff':
+    	    robotMoves.lightOff()
+        elif message['move'] == 'stepCW':
+            robotMoves.stepCW()
+        elif message['move'] == 'stepACW':
+            robotMoves.stepACW()
+        else:
+            robotMoves.stop()
+    def status(self, pubnub, status):
         pass
-except KeyboardInterrupt:
-    GPIO.cleanup()
-    sys.exit(1)
+    def presence(self, pubnub, presence):
+        pass
+################
+# Set up pubnub listener and subscriber
+################
+my_listener = MyListener()
+pubnub.add_listener(my_listener)
+pubnub.subscribe().channels(keys.CHANNEL).execute()
+print("SUBSCRIBED TO CHANNEL: " + keys.CHANNEL + " listening for messages....")
