@@ -2,13 +2,21 @@
 /*
 * PUBNUB keys
 */
+//this is should match the channel that the robot.py code uses
+var channel = 'robot'
 
-var green = PUBNUB.init({
-    publish_key: 'pub-c-a20fde3e-257d-4c7b-ac2b-6e734e0270d3',
-    subscribe_key: 'sub-c-bb03bdaa-a812-11e5-9dba-0619f8945a4f'
+/*green and blue are options on the ui, you can choose between them so that you can have 2 robots
+* working from the same controller code. these key sets will need to be created within the same pubnub
+* app (specified by the var channel above)
+*/
+var green = new PubNub({
+    subscribeKey: 'sub-c-xxxxx',
+    publishKey: 'pub-c-xxxx',
+    ssl: false
 });
 
-var blue = PUBNUB.init({
-    publish_key: 'pub-c-501d186f-712e-4c17-aa35-a531815a0438',
-    subscribe_key: 'sub-c-26e4da60-a42d-11e6-a756-02ee2ddab7fe'
+var blue = new PubNub({
+    subscribeKey: 'sub-c-xxx',
+    publishKey: 'pub-c-xxx',
+    ssl: false
 });

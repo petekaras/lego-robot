@@ -1,6 +1,19 @@
 # lego-robot
 This is the software required to build a lego robot with a webcam that streams over HTTP.
 Full instructions are here [on the instructables website](http://www.instructables.com/id/Dog-Bot-Lego-Robot-Rover-With-Webcam/)
+The code consists of a pyhton server that can be run on a raspberry pi, and a Javascript client that communicates with the server using PubNub
+## Compatibility
+Current version works with pubnub v4
+```
+pip install 'pubnub>=4.1.2'
+```
+and any version of python
+
+## Configuration quick guide
+* Update [keys.js](client/keys.js) with your pubnub keyset.
+* Update [keys.py](server/keys.py) with your pubnub keyset.
+
+The `channel` can be anything, but must match on client and server
 
 ## Available Controllers
 | Controller 			| Description 		                                    |

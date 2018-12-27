@@ -1,21 +1,15 @@
-function sendMessage(direction,channel){
-
-    console.log("Channel: " + channel, "Value: " + direction);
-
-
-    if(channel==='green'){
-      green.publish({
-          channel: 'dog-bot',
-          message: {"move":direction}
-        });
-    }
-
-    if(channel==='blue'){
-      blue.publish({
-          channel: 'other-bot',
-          message: {"move":direction}
-        });
-    }
-
-
+function sendMessage(direction, keySet){
+    console.log("[KeySet]:" + keySet, "[Value]:" + direction, '[Channel]:' + channel);
+    var app = eval(keySet)
+    app.publish(
+        {
+            message: {'move': direction},
+            channel: channel,
+            sendByPost: false,
+            storeInHistory: false
+        },
+        function (status, response) {
+            // handle status, response
+        }
+    );
   }
