@@ -1,6 +1,19 @@
 # lego-robot
 This is the software required to build a lego robot with a webcam that streams over HTTP.
 Full instructions are here [on the instructables website](http://www.instructables.com/id/Dog-Bot-Lego-Robot-Rover-With-Webcam/)
+The code consists of a pyhton server that can be run on a raspberry pi, and a Javascript client that communicates with the server using PubNub
+## Compatibility
+Current version works with pubnub v4
+```
+pip install 'pubnub>=4.1.2'
+```
+and any version of python
+
+## Configuration quick guide
+* Update [keys.js](client/keys.js) with your pubnub keyset.
+* Update [keys.py](server/keys.py) with your pubnub keyset.
+
+The `channel` can be anything, but must match on client and server
 
 ## Available Controllers
 | Controller 			| Description 		                                    |
@@ -34,7 +47,7 @@ Full instructions are here [on the instructables website](http://www.instructabl
 * sudo apt-get update
 * sudo apt-get install motion
 * sudo apt-get install python-dev python-pip
-* sudo pip install 'pubnub>=3,<4'
+* sudo pip install 'pubnub>=4.1.2'
 * git clone https://github.com/petekaras/lego-robot.git into your home directory
 
 ## Configure motion
@@ -79,7 +92,7 @@ plug and unplug the USB reader to find out which device to use. Now write the im
 
 Might take a while over USB 2.
 
-##Connect with TTL serial cable
+## Connect with TTL serial cable
 I used this to connect up to a newly installed Raspian OS, and set up the wifi. Saves having to connect up keyboard, mouse and screen.
 The wires of the cable should be connected like this:
 
@@ -87,8 +100,8 @@ The wires of the cable should be connected like this:
 | -----------| ------ |
 | red 		   | 5V		  |
 | black  	   | GND  	|
-| white  	   | 14  		|
-| green  	   | 15  		|
+| white  	   | GIO14  		|
+| green  	   | GPIO15  		|
 
 Install screen
 

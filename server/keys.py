@@ -4,6 +4,7 @@
 PubNub keys
 """
 
-PUBLISH="pub-xxxxxxxxxxxxxxx"
-SUBSCRIBE="sub-xxxxxxxxxxxxx"
-CHANNEL="xxxxx"
+PUBLISH="pub-c-xxx"
+SUBSCRIBE="sub-c-xxx"
+#this should match the channel defined in the client keys.js
+CHANNEL="robot"
