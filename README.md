@@ -9,7 +9,7 @@ pip install 'pubnub>=4.1.2'
 ```
 and any version of python
 
-## Configuration quick guide
+## Configuration Quick guide
 * Update [keys.js](client/keys.js) with your pubnub keyset.
 * Update [keys.py](server/keys.py) with your pubnub keyset.
 
